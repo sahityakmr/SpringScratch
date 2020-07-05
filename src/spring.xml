@@ -5,25 +5,32 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
-    <bean id="pointA" class="com.example.Point">
-        <property name="x" value="20"/>
-        <property name="y" value="12"/>
+    <bean id="pointZero" class="com.example.Point">
+        <property name="x" value="0"/>
+        <property name="y" value="0"/>
     </bean>
 
-    <bean id="pointB" class="com.example.Point">
-        <property name="x" value="-20"/>
-        <property name="y" value="16"/>
+    <bean id="triangle" class="com.example.Triangle" name="triangle2">
+        <property name="pointA" ref="pointZero"/>
+        <!--<property name="pointA">
+            <idref bean="pointZero"/>
+            to restrict using id only
+        </property>-->
+        <property name="pointB">
+            <!--Only benefit is consolidation-->
+            <bean class="com.example.Point">
+                <property name="x" value="-20"/>
+                <property name="y" value="16"/>
+            </bean>
+        </property>
+        <property name="pointC">
+            <bean class="com.example.Point">
+                <property name="x" value="10"/>
+                <property name="y" value="11"/>
+            </bean>
+        </property>
     </bean>
 
-    <bean id="pointC" class="com.example.Point">
-        <property name="x" value="10"/>
-        <property name="y" value="11"/>
-    </bean>
-
-    <bean id="triangle" class="com.example.Triangle">
-        <property name="pointA" ref="pointA"/>
-        <property name="pointB" ref="pointB"/>
-        <property name="pointC" ref="pointC"/>
-    </bean>
+    <alias name="triangle" alias="myTriangle"/>
 
 </beans>
