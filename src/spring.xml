@@ -5,20 +5,25 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
+    <bean id="pointA" class="com.example.Point">
+        <property name="x" value="20"/>
+        <property name="y" value="12"/>
+    </bean>
+
+    <bean id="pointB" class="com.example.Point">
+        <property name="x" value="-20"/>
+        <property name="y" value="16"/>
+    </bean>
+
+    <bean id="pointC" class="com.example.Point">
+        <property name="x" value="10"/>
+        <property name="y" value="11"/>
+    </bean>
+
     <bean id="triangle" class="com.example.Triangle">
-        <!--<property name="type" value="Isoscales"/>-->
-        <!--<constructor-arg value="Isoscales"/>-->
-
-        <!--<constructor-arg value="Isoscales"/>
-        <constructor-arg value="20"/>-->
-
-        <!--<constructor-arg value="20"/> &lt;!&ndash;Problem, Confusion for spring&ndash;&gt;-->
-
-        <!--<constructor-arg value="20" type="int"/>-->
-        <!--<constructor-arg value="20" type="java.lang.String"/> &lt;!&ndash;Solution&ndash;&gt;-->
-
-        <constructor-arg index="1" value="20"/>
-        <constructor-arg index="0" value="30"/>
+        <property name="pointA" ref="pointA"/>
+        <property name="pointB" ref="pointB"/>
+        <property name="pointC" ref="pointC"/>
     </bean>
 
 </beans>
