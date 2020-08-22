@@ -24,7 +24,8 @@ public class DrawingApp {
 
     private static void drawPointerTriangle(ApplicationContext context) {
         // PointerTriangle pointerTriangle = (PointerTriangle) context.getBean("pointerTriangle");
-        PointerTriangle pointerTriangle = (PointerTriangle) context.getBean("triangle");
+        // PointerTriangle pointerTriangle = (PointerTriangle) context.getBean("triangle");
+        PointerTriangle pointerTriangle = (PointerTriangle) context.getBean("pointerTriangle1");
         pointerTriangle.draw();
     }
 

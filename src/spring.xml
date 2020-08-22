@@ -78,6 +78,17 @@
 
     </bean>
 
+    <bean id="pointerTriangle1" class="com.example.PointerTriangle" parent="pointerTriangle">
+        <!--Will initialize pointA and pointC from parent-->
+        <property name="pointB" ref="pointC"/>
+    </bean>
+
+    <bean id="pointerTriangle2" class="com.example.PointerTriangle" parent="pointerTriangle">
+        <!--Will initialize pointA from parent-->
+        <property name="pointB" ref="pointC"/>
+        <property name="pointC" ref="pointB"/>
+    </bean>
+
     <alias name="pointerTriangle" alias="triangle"/>
 
     <bean id="pointZero" class="com.example.Point">
@@ -95,6 +106,10 @@
         <property name="y" value="11"/>
     </bean>
 
+    <!--
+    To make parent bean abstract
+    <bean id="complexTriangle" class="com.example.ComplexTriangle" abstract="true">
+    -->
     <bean id="complexTriangle" class="com.example.ComplexTriangle" name="triangle2">
         <property name="points">
             <list>
@@ -119,5 +134,14 @@
             </map>
         </property>
     </bean>
+
+    <bean id="complexTriangle1" class="com.example.ComplexTriangle">
+        <property name="points">
+            <list merge="true">
+                <ref bean="pointZero"/>
+            </list>
+        </property>
+    </bean>
+
 
 </beans>
