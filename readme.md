@@ -1,4 +1,4 @@
-'''
+```
 Basic Bean Scopes:
     1.  Singleton (Default Scope)
         - Beans are created while initializing application context. 
@@ -10,4 +10,4 @@ Basic Bean Scopes:
         - Request : New bean per servlet request.
         - Session : New bean per session.
         - Global Session : New bean per global HTTP Session. 
-'''
+```
