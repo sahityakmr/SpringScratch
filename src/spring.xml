@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-init-method="myInit" default-destroy-method="myDestroy" >
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-init-method="myInit" default-destroy-method="myDestroy">
     <!--We have used global init and destroy methods-->
 
     <!-- bean definitions here -->
@@ -53,8 +53,11 @@
     <alias name="pointZero" alias="pointA"/>
     -->
 
-    <!--Following bean will be created at every getBean call-->
+    <!--
+    Following bean will be created at every getBean call
     <bean id="pointerTriangle" class="com.example.PointerTriangle" scope="prototype" init-method="myInit" destroy-method="myDestroy">
+    -->
+    <bean id="pointerTriangle" class="com.example.PointerTriangle" init-method="myInit" destroy-method="myDestroy">
         <!--
         Injecting Beans
         <property name="pointA" ref="pointZero"/>
@@ -144,5 +147,6 @@
         </property>
     </bean>
 
+    <bean class="com.example.DisplayNameBeanPostProcessor" />
 
 </beans>
