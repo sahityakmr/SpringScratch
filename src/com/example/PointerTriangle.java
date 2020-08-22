@@ -1,9 +1,18 @@
 package com.example;
 
-public class Triangle {
+public class PointerTriangle {
     private Point pointA;
     private Point pointB;
     private Point pointC;
+
+    public PointerTriangle(Point pointA, Point pointB, Point pointC) {
+        this.pointA = pointA;
+        this.pointB = pointB;
+        this.pointC = pointC;
+    }
+
+    public PointerTriangle() {
+    }
 
     public Point getPointA() {
         return pointA;
@@ -30,6 +39,6 @@ public class Triangle {
     }
 
     public void draw() {
-        System.out.println("Drawing Triangle with points " + getPointA() + " " + getPointB() + " " + getPointC());
+        System.out.printf("Drawing Triangle with points %s, %s, %s%n", pointA, pointB, pointC);
     }
 }

@@ -5,32 +5,104 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
+
+    <bean id="simpleTriangle" class="com.example.SimpleTriangle"/>
+
+    <bean id="typedTriangle" class="com.example.TypedTriangle">
+
+        <!--
+        Using Setters
+        <property name="type" value="Isoscales"/>
+        <property name="height" value="20"/>
+        -->
+
+        <!--
+        Using String Constructor
+        <constructor-arg value="Isoscales"/>
+        -->
+
+        <!--
+        This will also use string constructor
+        <constructor-arg value="20"/>
+        -->
+
+        <!--
+        Constructor Invoked. But, may cause issues in case of multiple fields with same type
+        <constructor-arg value="Isoscales" type="java.lang.String"/>
+        <constructor-arg value="20" type="int"/>
+        -->
+
+        <!--Perfect way-->
+        <constructor-arg index="0" value="Equilateral"/>
+        <constructor-arg index="1" value="20"/>
+
+    </bean>
+
+    <bean id="pointerTriangle" class="com.example.PointerTriangle">
+        <!--
+        Injecting Beans
+        <property name="pointA" ref="pointZero"/>
+        <property name="pointB" ref="pointB"/>
+        <property name="pointC" ref="pointC"/>
+        -->
+
+        <!-- Inner Beans -->
+        <property name="pointA" ref="pointZero"/>
+        <property name="pointB">
+            <bean class="com.example.Point">
+                <property name="x" value="51"/>
+                <property name="y" value="11"/>
+            </bean>
+        </property>
+        <property name="pointC">
+            <bean class="com.example.Point">
+                <property name="x" value="6"/>
+                <property name="y" value="15"/>
+            </bean>
+        </property>
+
+    </bean>
+
+    <alias name="pointerTriangle" alias="triangle"/>
+
     <bean id="pointZero" class="com.example.Point">
         <property name="x" value="0"/>
         <property name="y" value="0"/>
     </bean>
 
-    <bean id="triangle" class="com.example.Triangle" name="triangle2">
-        <property name="pointA" ref="pointZero"/>
-        <!--<property name="pointA">
-            <idref bean="pointZero"/>
-            to restrict using id only
-        </property>-->
-        <property name="pointB">
-            <!--Only benefit is consolidation-->
-            <bean class="com.example.Point">
-                <property name="x" value="-20"/>
-                <property name="y" value="16"/>
-            </bean>
-        </property>
-        <property name="pointC">
-            <bean class="com.example.Point">
-                <property name="x" value="10"/>
-                <property name="y" value="11"/>
-            </bean>
-        </property>
+    <bean id="pointB" class="com.example.Point">
+        <property name="x" value="-20"/>
+        <property name="y" value="16"/>
     </bean>
 
-    <alias name="triangle" alias="myTriangle"/>
+    <bean id="pointC" class="com.example.Point">
+        <property name="x" value="10"/>
+        <property name="y" value="11"/>
+    </bean>
+
+    <bean id="complexTriangle" class="com.example.ComplexTriangle" name="triangle2">
+        <property name="points">
+            <list>
+                <ref bean="pointZero"/>
+                <ref bean="pointC"/>
+                <ref bean="pointB"/>
+            </list>
+        </property>
+
+        <property name="types">
+            <map>
+                <entry key="key1" value="value1"/>
+                <entry key="key2" value="value2"/>
+                <entry key="key3" value="value3"/>
+
+                <!--
+                For Object Value
+                <entry key="key1" value-ref="value1"/>
+                <entry key="key2" value-ref="value2"/>
+                <entry key="key3" value-ref="value3"/>
+                -->
+            </map>
+        </property>
+    </bean>
 
 </beans>
