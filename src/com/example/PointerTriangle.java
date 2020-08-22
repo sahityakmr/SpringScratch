@@ -2,10 +2,12 @@ package com.example;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-public class PointerTriangle implements ApplicationContextAware, BeanNameAware {
+public class PointerTriangle implements ApplicationContextAware, BeanNameAware, InitializingBean, DisposableBean {
     private Point pointA;
     private Point pointB;
     private Point pointC;
@@ -59,5 +61,25 @@ public class PointerTriangle implements ApplicationContextAware, BeanNameAware {
     public void setBeanName(String name) {
         System.out.printf("Bean Name is : %s%n", name);
         this.beanName = name;
+    }
+
+    @Override
+    public void afterPropertiesSet() {
+        System.out.println("AfterPropertiesSet");
+    }
+
+    @Override
+    public void destroy() {
+        // Not called for scope prototype
+        System.out.println("Bean Destroyed");
+    }
+
+    public void myInit(){
+        System.out.println("My Init Called");
+    }
+
+    public void myDestroy(){
+        // Not called for scope prototype
+        System.out.println("My Destroy");
     }
 }
