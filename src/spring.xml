@@ -96,8 +96,8 @@
     <alias name="pointerTriangle" alias="triangle"/>
 
     <bean id="pointZero" class="com.example.Point">
-        <property name="x" value="0"/>
-        <property name="y" value="0"/>
+        <property name="x" value="${pointA.pointX}"/>
+        <property name="y" value="${pointA.pointY}"/>
     </bean>
 
     <bean id="pointB" class="com.example.Point">
@@ -148,5 +148,11 @@
     </bean>
 
     <bean class="com.example.DisplayNameBeanPostProcessor" />
+
+    <bean class="com.example.MyBeanFactoryPostProcessor" />
+
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations" value="pointsConfig.properties"/>
+    </bean>
 
 </beans>
