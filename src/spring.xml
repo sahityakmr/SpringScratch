@@ -38,6 +38,20 @@
 
     </bean>
 
+    <!--
+
+    Note :
+    Autowire by type will work using setters only when there is one bean of required type.
+    Autowire by constructor works same as autowire by type, but using constructor injection.
+    Autowire is off by default.
+
+
+    Using Autowire by name
+    <bean id="pointerTriangle" class="com.example.PointerTriangle" autowire="byName"/>
+
+    <alias name="pointZero" alias="pointA"/>
+    -->
+
     <bean id="pointerTriangle" class="com.example.PointerTriangle">
         <!--
         Injecting Beans
@@ -46,7 +60,7 @@
         <property name="pointC" ref="pointC"/>
         -->
 
-        <!-- Inner Beans -->
+        <!--Inner Beans-->
         <property name="pointA" ref="pointZero"/>
         <property name="pointB">
             <bean class="com.example.Point">
