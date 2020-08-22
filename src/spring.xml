@@ -52,7 +52,8 @@
     <alias name="pointZero" alias="pointA"/>
     -->
 
-    <bean id="pointerTriangle" class="com.example.PointerTriangle">
+    <!--Following bean will be created at every getBean call-->
+    <bean id="pointerTriangle" class="com.example.PointerTriangle" scope="prototype">
         <!--
         Injecting Beans
         <property name="pointA" ref="pointZero"/>
