@@ -7,6 +7,8 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 
+import java.util.Locale;
+
 public class DrawingApp {
     public static void main(String[] args) {
 
@@ -24,6 +26,10 @@ public class DrawingApp {
 
     private static void drawWithApplicationContext() {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+
+        String message = context.getMessage("greeting", null, "Default Greeting", Locale.ENGLISH);
+        System.out.println(message);
+
         drawSimpleTriangle(context);
         // drawTypedTriangle(context);
         // drawPointerTriangle(context);
