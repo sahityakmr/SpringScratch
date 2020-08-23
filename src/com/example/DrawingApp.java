@@ -24,7 +24,7 @@ public class DrawingApp {
 
     private static void drawWithApplicationContext() {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        // drawSimpleTriangle(context);
+        drawSimpleTriangle(context);
         // drawTypedTriangle(context);
         // drawPointerTriangle(context);
         // drawComplexTriangle(context);

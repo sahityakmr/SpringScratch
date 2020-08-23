@@ -15,7 +15,13 @@
 
     <!-- bean definitions here -->
 
+    <!--
+    Defining this as component
     <bean id="simpleTriangle" class="com.example.SimpleTriangle"/>
+    -->
+
+    <!--This is used to scan Components inside package-->
+    <context:component-scan base-package="com.example"/>
 
     <bean id="typedTriangle" class="com.example.TypedTriangle">
 
