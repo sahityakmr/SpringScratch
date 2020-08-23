@@ -154,6 +154,7 @@
     </bean>
 
     <bean id="shapedCircle" class="com.example.ShapedCircle">
+        <!--If property is not defined, @Required will throw exception-->
         <property name="center" ref="pointZero"/>
     </bean>
 
@@ -164,5 +165,10 @@
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations" value="pointsConfig.properties"/>
     </bean>
+
+    <!--
+    Following is required to throw exception at start, if @Required dependency is not met.
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    -->
 
 </beans>

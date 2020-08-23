@@ -34,8 +34,10 @@ public class DrawingApp {
     private static void drawShape(ApplicationContext context) {
         Shape shape = (Shape) context.getBean("shapedCircle");
         shape.draw();
+        /*
         shape = (Shape) context.getBean("shapedTriangle");
         shape.draw();
+         */
     }
 
     private static void drawPointerTriangle(ApplicationContext context) {

@@ -1,12 +1,16 @@
 package com.example;
 
-public class ShapedCircle implements Shape{
+import org.springframework.beans.factory.annotation.Required;
+
+public class ShapedCircle implements Shape {
     private Point center;
 
     public Point getCenter() {
         return center;
     }
 
+    @SuppressWarnings("deprecation")
+    @Required
     public void setCenter(Point center) {
         this.center = center;
     }
