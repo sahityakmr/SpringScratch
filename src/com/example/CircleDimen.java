@@ -11,6 +11,9 @@ public class CircleDimen {
         return center;
     }
 
+    /*
+    @Resource(name="pointA") or @Resource(if bean with name center exists)
+    */
     @Autowired
     @Qualifier("circleCenter")
     public void setCenter(Point center) {
@@ -31,5 +34,15 @@ public class CircleDimen {
                 "point=" + center +
                 ", radius=" + radius +
                 '}';
+    }
+
+    // @PostConstruct
+    public void init() {
+        // to automatically call after initialization
+    }
+
+    // @PreDestroy
+    public void destroy() {
+        // to automatically call before destruction
     }
 }
