@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-init-method="myInit" default-destroy-method="myDestroy">
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd"
+        default-init-method="myInit" default-destroy-method="myDestroy">
     <!--We have used global init and destroy methods-->
+
+    <!--Using this, we don't need to define all postProcessor Beans-->
+    <context:annotation-config/>
 
     <!-- bean definitions here -->
 
@@ -101,6 +109,7 @@
     </bean>
 
     <bean id="pointB" class="com.example.Point">
+        <qualifier value="circleCenter"/>
         <property name="x" value="-20"/>
         <property name="y" value="16"/>
     </bean>
@@ -155,7 +164,10 @@
 
     <bean id="shapedCircle" class="com.example.ShapedCircle">
         <!--If property is not defined, @Required will throw exception-->
+        <!--
+        Using Autowire (When only one Point bean is present, or in case of multiple Point bean, it search for a point with id same as member variable)
         <property name="center" ref="pointZero"/>
+        -->
     </bean>
 
     <bean class="com.example.DisplayNameBeanPostProcessor" />
@@ -166,9 +178,20 @@
         <property name="locations" value="pointsConfig.properties"/>
     </bean>
 
+    <bean class="com.example.CircleDimen" name="circleDimen">
+        <!--
+        center wiring using Autowire and Qualifier
+        <property name="center" ref="pointZero"/>
+        -->
+        <property name="radius" value="15"/>
+    </bean>
+
     <!--
     Following is required to throw exception at start, if @Required dependency is not met.
     <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
     -->
+
+    <!--Following is required for processing @Autowired-->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
 </beans>
