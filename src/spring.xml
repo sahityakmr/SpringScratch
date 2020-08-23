@@ -147,6 +147,16 @@
         </property>
     </bean>
 
+    <bean id="shapedTriangle" class="com.example.ShapedTriangle">
+        <property name="pointA" ref="pointZero"/>
+        <property name="pointB" ref="pointB"/>
+        <property name="pointC" ref="pointC"/>
+    </bean>
+
+    <bean id="shapedCircle" class="com.example.ShapedCircle">
+        <property name="center" ref="pointZero"/>
+    </bean>
+
     <bean class="com.example.DisplayNameBeanPostProcessor" />
 
     <bean class="com.example.MyBeanFactoryPostProcessor" />

@@ -12,8 +12,8 @@ public class DrawingApp {
 
         // drawWithoutSpring();
         // drawWithBeanFactory();
-        // drawWithApplicationContext();
-        drawWithAbstractApplicationContext();
+        drawWithApplicationContext();
+        // drawWithAbstractApplicationContext();
     }
 
     private static void drawWithAbstractApplicationContext() {
@@ -26,8 +26,16 @@ public class DrawingApp {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         // drawSimpleTriangle(context);
         // drawTypedTriangle(context);
-        drawPointerTriangle(context);
+        // drawPointerTriangle(context);
         // drawComplexTriangle(context);
+        drawShape(context);
+    }
+
+    private static void drawShape(ApplicationContext context) {
+        Shape shape = (Shape) context.getBean("shapedCircle");
+        shape.draw();
+        shape = (Shape) context.getBean("shapedTriangle");
+        shape.draw();
     }
 
     private static void drawPointerTriangle(ApplicationContext context) {
